@@ -11,24 +11,13 @@ const bcrypt = require('bcrypt');
 
 //START_ASYNC -do not remove notes, place code between correct pair of notes.
 
-bcrypt.hash(myPlaintextPassword, saltRounds, (err, hash) => {
-  if (err) return console.error(err);
-
-  console.log(hash); // acá verás el hash en consola
-
-  // comparar contra el mismo texto (debería dar true)
-  bcrypt.compare(myPlaintextPassword, hash, (err, res) => {
-    if (err) return console.error(err);
-    console.log(res); // true
-
-    // Si querés probar el false, descomenta esto:
-    // bcrypt.compare(someOtherPlaintextPassword, hash, (err, res2) => {
-    //   if (err) return console.error(err);
-    //   console.log(res2); // false
-    // });
+bcrypt.hash('passw0rd!', 13, (err, hash) => {
+  console.log(hash);
+  //$2a$12$Y.PHPE15wR25qrrtgGkiYe2sXo98cjuMCG1YwSI5rJW1DSJp0gEYS
+  bcrypt.compare('passw0rd!', hash, (err, res) => {
+    console.log(res); //true
   });
 });
-
 
 //END_ASYNC
 
